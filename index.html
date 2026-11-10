@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finanças da Casa</title>
+<meta name="apple-mobile-web-app-title" content="Finanças">
+<meta name="theme-color" content="#16596B">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root{--bg:#16596B;--fg:#F6F1E7;--accent:#E9A23B;--ink:#0E3540}
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:max(24px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+  main{display:flex;flex-direction:column;align-items:center;gap:18px;max-width:360px}
+  img{width:120px;height:120px;border-radius:27px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  h1{margin:0;font-size:26px;font-weight:700}
+  p{margin:0;opacity:.85;font-size:15px;line-height:1.45}
+  a.btn{display:inline-block;background:var(--accent);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none;
+    padding:14px 28px;border-radius:14px;min-width:220px}
+  a.btn:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+  details{font-size:14px;opacity:.9;text-align:left}
+  summary{cursor:pointer;text-align:center}
+  ol{padding-left:20px;margin:10px 0 0;line-height:1.6}
+</style>
+</head>
+<body>
+<main>
+  <img src="icon-512.png" alt="">
+  <h1>Finanças da Casa</h1>
+  <p id="msg">Abrindo o app…</p>
+  <a class="btn" id="abrir" href="#">Abrir o app</a>
+  <details>
+    <summary>Colocar na tela de início do iPhone</summary>
+    <ol>
+      <li>Abra esta página no Safari.</li>
+      <li>Toque em Compartilhar (quadrado com seta).</li>
+      <li>Toque em “Adicionar à Tela de Início”.</li>
+    </ol>
+  </details>
+</main>
+<script>
+  // Cole aqui o link do app da Web (termina em /exec), entre as aspas:
+  const APP_URL = 'COLE_AQUI_O_LINK_DO_APP';
+
+  const ok = /^https:\/\/script\.google\.com\/.+\/exec/.test(APP_URL);
+  const btn = document.getElementById('abrir'), msg = document.getElementById('msg');
+  if (ok) {
+    btn.href = APP_URL;
+    // Só redireciona sozinho quando aberto pelo ícone (sem #ficar no endereço)
+    if (location.hash !== '#ficar') setTimeout(() => { location.href = APP_URL; }, 700);
+  } else {
+    msg.textContent = 'Falta colar o link do app no arquivo index.html.';
+    btn.hidden = true;
+  }
+</script>
+</body>
+</html>
